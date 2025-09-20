@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+/databases/
+/.vscode/
+.DS_Store
+*.txt
