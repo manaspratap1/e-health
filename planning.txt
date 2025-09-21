@@ -1,0 +1,47 @@
+                 ┌────────────┐
+   Frontend <--> │ API Gateway │ <---------------------+
+                 └─────┬──────┘                       |
+                       |                              |
+        +--------------+-------------+                |
+        |              |             |                |
+ ┌────────────┐ ┌────────────┐ ┌────────────┐         |
+ │ Auth Svc   │ │ Patient Svc│ │ Doctor Svc │         |
+ │ Postgres   │ │ MongoDB    │ │ Postgres   │         |
+ └────────────┘ └────────────┘ └────────────┘         |
+        |              |             |                |
+        +--------------+-------------+                |
+                       |                              |
+              ┌────────▼─────────┐                   |
+              │ Appointment Svc  │                   |
+              │ Postgres         │                   |
+              └────────┬─────────┘                   |
+                       | emits event "appointment.booked"
+                       v
+               ┌──────────────┐
+               │ Kafka/Rabbit │
+               └──────────────┘
+                       |
+       +---------------+------------------+
+       |                                  |
+┌───────────────┐                 ┌───────────────┐
+│ Notification   │                 │ Teleconsult   │
+│ Email/SMS Push │                 │ WebRTC+Socket │
+└───────────────┘                 └───────────────┘
+                       |
+                ┌───────────────┐
+                │ Payments Svc  │
+                │ Postgres/MySQL│
+                └───────────────┘
+
+
+| Service                        | Responsibilities                | Endpoints (examples)                                  |
+| ------------------------------ | ------------------------------- | ----------------------------------------------------- |
+| **Auth Service**               | Login/Signup, JWT               | `/auth/login`, `/auth/register`, `/auth/refresh`      |
+| **Patient Service**            | Patient profile, history, files | `/patients`, `/patients/:id`, `/patients/:id/records` |
+| **Doctor Service**             | Doctor profile, specialties     | `/doctors`, `/doctors/:id`                            |
+| **Appointment Service**        | Book/cancel appointments        | `/appointments`, `/appointments/:id`                  |
+| **Prescription Service**       | Doctors can issue prescriptions | `/prescriptions`, `/prescriptions/:id`                |
+| **Payment Service** (optional) | Payment for appointments        | `/payments`, `/payments/:id`                          |
+| **API Gateway**                | Routes requests & handles JWT   | `/patients/...`, `/doctors/...`, `/appointments/...`  |
+
+

@@ -1,0 +1,74 @@
+frontend/
+ ├── app/ (Next.js 13+ App Router)
+ │   ├── layout.tsx
+ │   ├── page.tsx (landing)
+ │   ├── auth/ (login/signup pages)
+ │   ├── dashboard/
+ │   │   ├── patient/
+ │   │   └── doctor/
+ │   ├── appointments/
+ │   ├── prescriptions/
+ │   ├── video-call/
+ │   └── payments/
+ ├── components/
+ │   ├── ui/ (buttons, forms, modals)
+ │   ├── charts/ (analytics)
+ │   └── navbar.tsx
+ ├── lib/ (api client, auth helpers)
+ ├── hooks/
+ ├── styles/
+ └── package.json
+
+ pages
+
+
+ Patient
+
+Login / Register
+
+Dashboard → Upcoming appointments, prescriptions
+
+Profile → Edit info, upload files, view history
+
+Explore Doctors → Search & filter doctors
+
+Book Appointment → Select doctor/date/time
+
+Video Consultation → WebRTC session
+
+View Prescriptions & Bills
+
+Doctor
+
+Login / Register
+
+Dashboard → Upcoming appointments, patient list
+
+Profile → Edit specialties, availability
+
+Appointment Management → Accept/decline appointments
+
+Prescribe → Add prescription for patient
+
+Video Consultation → WebRTC session
+
+
+4️⃣ High-Level Flow (Patient Example)
+
+Patient visits site → login/register → JWT issued by Auth Service
+
+API Gateway validates JWT → routes requests to services
+
+Patient updates profile → Patient Service updates DB
+
+Patient searches doctor → Doctor Service returns list
+
+Patient books appointment → Appointment Service creates record
+
+On scheduled time → Video consultation via WebRTC service
+
+Doctor adds prescription → Prescription Service saves record
+
+Patient can view prescription & download
+
+Doctor flow is the mirror: accepts appointments, consults, prescribes

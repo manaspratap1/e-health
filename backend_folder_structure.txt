@@ -1,0 +1,26 @@
+backend/
+ ├── api-gateway/
+ │   ├── index.js
+ │   ├── routes/
+ │   ├── middlewares/
+ │   └── package.json
+ ├── auth-service/
+ │   ├── src/
+ │   │   ├── controllers/
+ │   │   ├── models/
+ │   │   ├── routes/
+ │   │   ├── utils/
+ │   │   └── server.js
+ │   └── package.json
+ ├── patient-service/
+ ├── doctor-service/
+ ├── appointment-service/
+ ├── prescription-service/
+ ├── payments-service/
+ ├── notification-service/
+ ├── teleconsultation-service/
+ ├── kafka-broker/ (event bus config)
+ ├── common/ (shared utils, DTOs)
+ └── docker-compose.yml (optional later)
+
+ 

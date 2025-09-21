@@ -4,4 +4,3 @@ dist/
 /databases/
 /.vscode/
 .DS_Store
-*.txt
